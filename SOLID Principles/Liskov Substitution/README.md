@@ -117,3 +117,8 @@ puts mail.title
 ```
 
 And by ensuring that the subclasses of `DeliveryService` behave in the same manner, return the same type and accept the same arguments, we're now in line with the LISKOV principle and our code is much more resilient and consistent because of it.
+
+
+## Credits
+
+Some information was reworded from [this article by *Ugonna Thelma*](https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898)
