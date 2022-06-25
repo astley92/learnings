@@ -1,0 +1,9 @@
+<%= turbo_stream_from webhook %>
+<div id="<%= dom_id(webhook) %>">
+  You have a webhook setup <%= webhook.url %>
+  <br>
+  Current Status: <%= webhook.status.capitalize %>
+  <br>
+  <%= link_to "Check Connectivity", webhook_status_check_path(webhook), class: "btn btn-warning m-4" %>
+  <%= button_to "Remove", webhook_path(webhook), method: :delete, class: "btn btn-danger" %>
+</div>

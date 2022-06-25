@@ -1,0 +1,14 @@
+<div class="card w-50 mx-auto my-4">
+  <div class="card-header text-center">
+    Webhooks
+  </div>
+  <div class="card-body text-center">
+    <%= turbo_frame_tag "webhook_frame" do %>
+      <% if current_user.webhook.present? %>
+          <%= render current_user.webhook %>
+      <% else %>
+          <%= link_to "Add Webhook", new_webhook_path, class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
