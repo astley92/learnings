@@ -1,38 +1,30 @@
-class Mail
-  attr_reader :title
-  def initialize(title:)
+require "json"
+
+class Person
+  attr_reader :first_name, :last_name, :title, :address
+  def initialize(first_name, last_name, title, address)
+    @first_name = first_name
+    @last_name = last_name
     @title = title
+    @address = address
+  end
+
+  def export(filename)
+    File.write(filename, to_json_string)
+  end
+
+  def to_json_string
+    JSON.dump(
+      {
+        title: title,
+        first_name: first_name,
+        last_name: last_name,
+        address: address,
+      },
+    )
   end
 end
 
-class DeliveryService
-  def deliver_mail
-    return Mail.new(title: "Gas Bill")
-  end
-end
+person = Person.new("John", "Browne", "Mr", "123 Fake Street")
+person.export("test.json")
 
-class Fedex < DeliveryService
-  def deliver_mail
-    puts "Here's your mail, have a great day"
-    return Mail.new(title: "Gas Bill")
-  end
-end
-
-class AustraliaPost < DeliveryService
-  def deliver_mail
-    puts "Sorry it took 4 weeks, here's your mail"
-    return Mail.new(title: "Gas Bill")
-  end
-end
-
-delivery_person = DeliveryService.new
-mail = delivery_person.deliver_mail
-puts mail.title
-
-delivery_person = Fedex.new
-mail = delivery_person.deliver_mail
-puts mail.title
-
-delivery_person = AustraliaPost.new
-mail = delivery_person.deliver_mail
-puts mail.title
